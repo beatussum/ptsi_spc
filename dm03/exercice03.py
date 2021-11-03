@@ -6,6 +6,11 @@ import numpy
 
 """
 Donneés de l'énoncé
+
+On crée un `structured array` dont les champs (flottants) sont (dans l'ordre) :
+ - `temperature` soit les valeurs de température spécifiées dans l'énoncé
+ - `rate constant` soit les valeurs de la constante de vitesse également
+    spécifiées dans l'énoncé
 """
 
 data = numpy.array(
