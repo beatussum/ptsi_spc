@@ -13,7 +13,7 @@ fichier.
 def read_file(file_name):
     content = numpy.loadtxt(file_name)
 
-    return (content[:, 0] - content[0, 0], content[:, 1])
+    return (content[:, 0] - content[0, 0], content[:, 1] - content[0, 1])
 
 times, vadim = read_file("vadim.txt")
 
@@ -34,6 +34,7 @@ Création du premier graphe.
 """
 
 plt.figure(0)
+plt.title("Évolution de la vitesse adimensionnée en fonction du temps")
 plt.plot(times, vadim, "b", label = "résultats expérimentaux")
 plt.plot(times, times / tau, "k", label = "tangente à l'origine")
 plt.xlabel("temps (en seconde)")
@@ -77,7 +78,7 @@ Création du deuxième graphe.
 plt.figure(1)
 
 plt.title(
-    "Evolution de la vitesse adimensionnée en fonction du temps et\n"
+    "Évolution de la vitesse adimensionnée en fonction du temps et\n"
     "détermination de la loi de forces"
 )
 
@@ -101,7 +102,7 @@ a     = 2
 gamma = rho / rhob
 k     = m * g * ( 1 - gamma ) / vlim**a
 
-print(f"Le coefficient de frottements a pour valeur {k:.1e} kilogramme par mètre.")
+print(f"Le coefficient de frottements vaut {k:.1e} kilogramme par mètre.")
 
 """
 On affiche les deux graphes en même temps.
