@@ -28,7 +28,7 @@ r = 12.5e-3 # en mètre
 
 vlim = 1.581     # en mètre par seconde
 tau  = 1 / 2.745 # en seconde
- 
+
 """
 Création du premier graphe.
 """
@@ -61,15 +61,15 @@ Implémentation de la résolution par la méthode d'Euler.
 def f(y, a):
     return ( 1 - y**a ) / tau
 
-def euler(f, xzero, last_time, step, **kwargs):
-    ret = { 0: xzero }
+def euler(f, xzero, last_time, step, a):
+    times  = [0]
+    values = [xzero]
 
-    t = 0
-    while t <= last_time:
-        ret[t + step] = step * f(ret[t], **kwargs) + ret[t]
-        t += step
-    
-    return (ret.keys(), ret.values())
+    while times[-1] <= last_time:
+        values.append(step * f(values[-1], a) + values[-1])
+        times.append(times[-1] + step)
+
+    return (times, values)
 
 """
 Création du deuxième graphe.
@@ -82,11 +82,12 @@ plt.title(
     "détermination de la loi de forces"
 )
 
-my_euler = lambda a: euler(f, 0, times[-1], 1e-3, a = a)
+x1, y1 = euler(f, 0, times[-1], 1e-3, 1)
+x2, y2 = euler(f, 0, times[-1], 1e-3, 2)
 
 plt.plot(times, vadim, "r+", label = "résultats expérimentaux")
-plt.plot(*my_euler(1), "b", label = "a = 1")
-plt.plot(*my_euler(2), "g", label = "a = 2")
+plt.plot(x1, y1, "b", label = "a = 1")
+plt.plot(x2, y2, "g", label = "a = 2")
 
 plt.xlabel("temps (en seconde)")
 plt.ylabel(r"$ v^* $ (en mètre par seconde)")
