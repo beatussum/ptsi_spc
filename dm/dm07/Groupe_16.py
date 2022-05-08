@@ -1,7 +1,6 @@
 #! /usr/bin/env python3
 
 
-from math import ceil
 import matplotlib.pyplot as plt
 import numpy
 import scipy.optimize
