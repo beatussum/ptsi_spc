@@ -115,6 +115,8 @@ def Extremum(listePr: list[float]) -> tuple[int, int, list[float]]:
     for (i, pr) in enumerate(listePr[m + 1:], m + 1):
         if pr > max_val:
             M, max_val = i, pr
+        else:
+            break
 
     return m, M, listePr[m:M + 1]
 
